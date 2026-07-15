@@ -17,13 +17,21 @@ export const useStoryStore = defineStore("story", {
         "يرجى الانتظار... جاري قراءة القصة وتحليلها بواسطة الذكاء الاصطناعي 🧠";
 
       try {
-        // إرسال الطلب للـ Laravel API المحلي
+        // إرسال الطلب مع الهيدرز لحل مشكلة ngrok و CORS
         const response = await axios.post(
           "https://partridgelike-undelusively-gael.ngrok-free.dev/api/generate-story",
           {
             story_text: storyText,
             voice: voiceType,
           },
+          {
+            headers: {
+              "Content-Type": "application/json",
+              "Accept": "application/json",
+              // الهيدر السحري لتخطي صفحة تحذير ngrok التي تعطل الـ API وتسبب الـ CORS
+              "ngrok-skip-browser-warning": "true",
+            }
+          }
         );
 
         if (response.data.success) {
