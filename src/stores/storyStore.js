@@ -29,7 +29,7 @@ export const useStoryStore = defineStore("story", {
               "Content-Type": "application/json",
               "Accept": "application/json",
               // الهيدر السحري لتخطي صفحة تحذير ngrok التي تعطل الـ API وتسبب الـ CORS
-              "ngrok-skip-browser-warning": "true",
+              'ngrok-skip-browser-warning': 'bypass-please'
             }
           }
         );
